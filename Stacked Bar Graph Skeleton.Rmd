@@ -1,0 +1,33 @@
+---
+title: "Stacked Bar Graph"
+output: html_document
+date: "2025-09-05"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+
+library(readxl)
+library(tidyverse)
+Stacked_Bar_Graph_Play_Data <- read_excel("Stacked Bar Graph Play Data.xlsx", 
+    sheet = "Masterdata")
+
+plotframe<-Stacked_Bar_Graph_Play_Data%>%
+  filter(Bay=="Otter")%>%
+  select(GPS_ID,`Dead/Alive`,Open_Canopy_Cover, RHMA__Living_Canopy_Cover,RHMA__Dead_Canopy_Cover,LARA__Living_Canopy_Cover, LARA__Living_Canopy_Cover, AVGE__Living_Canopy_Cover, AVGE__Dead_Canopy_Cover,COER__Living_Canopy_Cover,COER__Dead_Canopy_Cover)
+
+
+longframe<-plotframe%>%
+  pivot_longer(cols=Open_Canopy_Cover:COER__Dead_Canopy_Cover,names_to="Species",values_to = "Percent")
+
+
+sbplot<-longframe%>%
+  ggplot(aes(x=GPS_ID, y=Percent, fill=Species))+
+  geom_col(position="stack")
+
+sbplot
+
+```
+
+
