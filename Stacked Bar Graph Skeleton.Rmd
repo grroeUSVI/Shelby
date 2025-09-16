@@ -5,6 +5,16 @@ date: "2025-09-05"
 editor_options: 
   chunk_output_type: console
 ---
+#add a change to check a thing change
+
+```{r Connect with Github}
+library(usethis)#this is the package that gets r to talk to git, the software in your computer and github the online platform
+
+use_git()#gives you a git tab in your r, so you can commit changes to git 
+use_github()#after you have git, you can connect to github which will create a repository for the 
+
+```
+
 
 ```{r setup, include=FALSE}
 
